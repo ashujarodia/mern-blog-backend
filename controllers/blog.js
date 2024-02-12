@@ -193,3 +193,16 @@ export const deleteComment = async (req, res, next) => {
 		next(error);
 	}
 };
+
+export const getUserBlogs = async (req, res, next) => {
+	try {
+		const { id } = req.params;
+		const blogs = await Blog.find({ user: id });
+		return res.status(200).json({
+			success: true,
+			blogs,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
